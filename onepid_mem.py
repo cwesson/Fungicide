@@ -23,14 +23,14 @@ fd = os.open(sys.argv[1], os.O_RDONLY)
 f = os.fdopen(fd)
 while True:
 	#select.select([fd], [], [])
-	pid = string.strip(f.readline())
+	pid = f.readline().strip()
 
 	if pid == '':
 		time.sleep(0.001)
 		continue
 
 	if pid == 'd':
-		print '--'
+		print('--')
 		continue
 
 	if pid == 'q':
@@ -40,6 +40,6 @@ while True:
 	pid=int(pid)
 	try:
 		private, shared = getMemStats(pid)
-		print shared + private
+		print(shared + private)
 	except:
 		continue #process gone
